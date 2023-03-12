@@ -2,17 +2,9 @@
     display: flex;
     gap: 10px;
 }
-.parsons.sortable-column-right {
-    width: 50%;
-    background-color: #ffa;
-    margin-left: 0;
-    border: 1px solid #efefff;
-    padding: 5px;
-    padding-bottom: 10px;
-}
 
 .parsons.sortable-column-left {
-    width: 50%;
+    width: 100%;
     background-color: #dfdfdf;
     margin-left: 0;
     border: 1px solid #efefff;

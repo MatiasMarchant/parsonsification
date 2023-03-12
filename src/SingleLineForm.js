@@ -12,7 +12,7 @@ function SingleLineForm(props) {
     return (
         <Form.Group controlId={props.id} className="mb-3">
             <Form.Label>{props.label}</Form.Label>
-            <Form.Control placeholder={props.placeholder} onChange={handleChange} />
+            <Form.Control placeholder={props.placeholder} onChange={handleChange} autoFocus={props.autoFocus} value={props.value === null ? ("") : (props.value)} />
             <Form.Text>
                 {props.text}
             </Form.Text>

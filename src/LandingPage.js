@@ -1,37 +1,50 @@
 import Container from 'react-bootstrap/Container';
-// import Row from 'react-bootstrap/Row';
-// import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import SingleLineForm from './SingleLineForm';
-import Form from 'react-bootstrap/Form';
 import MultipleLineForm from './MultipleLineForm';
 import ParsonsProblem from './ParsonsProblem';
+import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 
 function LandingPage() {
 
     let ParsonsProblemId = "id_parsons_problem";
-    let MoodleCodeId = "id_moodle_code";
 
-    const [codedelimiter, setCodedelimiter] = useState("\n"); // NewLine debería ser
-    const [vpddelimiter, setVPDdelimiter] = useState(null);
+    const [codedelimiter, setCodedelimiter] = useState("\n");
+    const [vpddelimiterL, setVPDdelimiterL] = useState(null);
+    const [vpddelimiterM, setVPDdelimiterM] = useState(null);
+    const [vpddelimiterR, setVPDdelimiterR] = useState(null);
     const [code, setCode] = useState("");
-    const [moodlecode, setMoodlecode] = useState("");
+    const [disabledinput, setDisabledinput] = useState(false);
 
     return (
         <Container>
             <Form>
-                <SingleLineForm id="idtest" label="Codedelimiter" placeholder="test placeholder" text="test text" setValue={setCodedelimiter} defaultValue={"\n"} />
-                {/* Quizás ayudaría agregar backlash r también */}
-                <SingleLineForm id="id_visuallypdd" label="Visually paired distractors delimiter" placeholder="vpdd delimiter" text="vpdd text" setValue={setVPDdelimiter} defaultValue={""}/>
-                <MultipleLineForm id="id_code" label="Code" rows="7" placeholder="code placeholder" text="code text" setValue={setCode}/>
-                <MultipleLineForm id={MoodleCodeId} label="Moodle code" rows="7" placeholder="moodle code placeholder" text="moodle code text" setValue={setMoodlecode}/>
+                <fieldset disabled={disabledinput}>
+                    <SingleLineForm id="idtest" label="Codedelimiter" placeholder="test placeholder" text="test text" setValue={setCodedelimiter} defaultValue={"\n"} value={codedelimiter}/>
+                    <Row>
+                        <Col><SingleLineForm id="id_visuallypddl" label="VPD L" placeholder="vpdd delimiter L" text="vpdd text L" setValue={setVPDdelimiterL} defaultValue={null} value={vpddelimiterL}/></Col>
+                        <Col><SingleLineForm id="id_visuallypddm" label="VPD M" placeholder="vpdd delimiter M" text="vpdd text M" setValue={setVPDdelimiterM} defaultValue={null} value={vpddelimiterM}/></Col>
+                        <Col><SingleLineForm id="id_visuallypddr" label="VPD R" placeholder="vpdd delimiter R" text="vpdd text R" setValue={setVPDdelimiterR} defaultValue={null} value={vpddelimiterR}/></Col>
+                    </Row>
+                    <MultipleLineForm id="id_code" label="Code" rows="7" placeholder="code placeholder" text="code text" setValue={setCode} value={code}/>
+                </fieldset>
+
             </Form>
             <ParsonsProblem
                 id={ParsonsProblemId}
                 codedelimiter={codedelimiter}
-                vpddelimiter={vpddelimiter}
+                setCodedelimiter={setCodedelimiter}
+                vpddelimiterL={vpddelimiterL}
+                vpddelimiterM={vpddelimiterM}
+                vpddelimiterR={vpddelimiterR}
+                setVPDdelimiterL={setVPDdelimiterL}
+                setVPDdelimiterM={setVPDdelimiterM}
+                setVPDdelimiterR={setVPDdelimiterR}
+                setCode={setCode}
                 code={code}
-                moodlecode={moodlecode}
+                setDisabledinput={setDisabledinput}
             />
         </Container>
     );
