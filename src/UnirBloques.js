@@ -116,7 +116,7 @@ function UnirBloques(props) {
                                         return (
                                             <>
                                                 <div className={auxClass} key={index + "_" + sortablechoiceIndex}>
-                                                    {sortableChoice}
+                                                    {props.removeLeftSpaces(sortableChoice)}
                                                 </div>
                                                 <Button variant='success' key={"new" + index + "_" + sortablechoiceIndex}
                                                     onClick={(e) => handleClickAddLineToVPD(e, index, sortablechoiceIndex)}>
@@ -131,7 +131,7 @@ function UnirBloques(props) {
                             return (
                                 <div>
                                     <div className="parsons sortable-item" key={index}>
-                                        {element}
+                                        {props.removeLeftSpaces(element)}
                                     </div>
                                     {index !== codeCopy.length - 1 && !codeCopy[index + 1].startsWith(props.vpddelimiterL) ? (
                                         <Button variant='success' key={"new" + index}

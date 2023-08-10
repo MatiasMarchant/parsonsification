@@ -63,7 +63,7 @@ function CrearVPDistractores(props) {
                                         var auxClass = sortablechoiceIndex === 0 ? ("sortable-choice chosen-choice") : ("sortable-choice");
                                         return (
                                             <div className={auxClass} key={index + "_" + sortablechoiceIndex}>
-                                                {sortableChoice}
+                                                {props.removeLeftSpaces(sortableChoice)}
                                             </div>
                                         )
                                     })}
@@ -73,7 +73,7 @@ function CrearVPDistractores(props) {
                             return (
                                 <div>
                                     <div className="parsons sortable-item" key={index}>
-                                        {element}
+                                        {props.removeLeftSpaces(element)}
                                     </div>
                                     <Button variant='success' key={"new" + index}
                                         onClick={(e) => handleClickCrearVPDistractor(e, index)}

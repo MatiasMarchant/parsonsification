@@ -135,6 +135,24 @@ function ParsonsProblem(props) {
         handleClickCrearVPDistractores();
     }
 
+    function removeLeftSpaces(inputString) {
+        // Dividir el string en líneas
+        const lines = inputString.split('\n');
+        // Encontrar la cantidad mínima de espacios en blanco al comienzo de las líneas
+        let minSpaces = Infinity;
+        for (const line of lines) {
+            if (line.trim() !== '') {
+                const leadingSpaces = line.match(/^\s*/)[0].length;
+                minSpaces = Math.min(minSpaces, leadingSpaces);
+            }
+        }
+        // Eliminar los espacios en blanco al comienzo de cada línea
+        const formattedLines = lines.map(line => line.slice(minSpaces));
+        // Unir las líneas formateadas para obtener el resultado final
+        const result = formattedLines.join('\n');
+        return result;
+    }
+
     return (
         <>
             {modoUnirBloques ? (
@@ -149,6 +167,7 @@ function ParsonsProblem(props) {
                 setCodeDelimiter={props.setCodeDelimiter}
                 setCode={props.setCode}
                 code={props.code}
+                removeLeftSpaces={removeLeftSpaces}
                 />
             ) : (
                 <>
@@ -165,6 +184,7 @@ function ParsonsProblem(props) {
                 initialOrderCodeFragmentsArray={initialOrderCodeFragmentsArray}
                 setCode={props.setCode}
                 codedelimiter={props.codedelimiter}
+                removeLeftSpaces={removeLeftSpaces}
                 />
             ) : (
                 <>
@@ -214,7 +234,7 @@ function ParsonsProblem(props) {
                                                 <div className={auxClass}
                                                     key={index + "_" + sortablechoiceIndex}
                                                 >
-                                                    {sortableChoice}
+                                                    {removeLeftSpaces(sortableChoice)}
                                                 </div>
                                             )
                                         })}
@@ -229,7 +249,7 @@ function ParsonsProblem(props) {
                                         onDragOver={(e) => handleDragOver(e, index)}
                                         key={index}
                                     >
-                                        {element}
+                                        {removeLeftSpaces(element)}
                                     </div>
                                 )
                             }
