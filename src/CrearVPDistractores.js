@@ -1,5 +1,6 @@
 import Button from "react-bootstrap/Button";
 import { useState } from 'react';
+import { Col, Row } from "react-bootstrap";
 
 function CrearVPDistractores(props) {
 
@@ -31,52 +32,60 @@ function CrearVPDistractores(props) {
     }
 
     return (
-        <div className="parsons sortable-container" id={"sortable-container-VPDistractores"}>
-            <div className="parsons sortable-column-left" id={"column0VPDistractores"}>
-                {codeCopy.map((element, index) => {
-                    if(element.includes(props.vpddelimiterL)) {
-                        const re = new RegExp(`(?<=\\${props.vpddelimiterL})(.*?)(?=\\${props.vpddelimiterR})`, "gs");
-                        try {
-                            var sortableChoices = element.match(re)[0].split(props.vpddelimiterM);
-                        } catch (e) {
-                            sortableChoices = ["Either remove or correct", "your choices of visually paired", "delimiters"];
-                            console.log("Error", e.name);
-                            console.log("Error", e.message);
-                        }
-                        return (
-                            <div className="parsons sortable-choice-parent" key={index}>
-                                {sortableChoices.map((sortableChoice, sortablechoiceIndex) => {
-                                    var auxClass = sortablechoiceIndex === 0 ? ("sortable-choice chosen-choice") : ("sortable-choice");
-                                    return (
-                                        <div className={auxClass} key={index + "_" + sortablechoiceIndex}>
-                                            {sortableChoice}
-                                        </div>
-                                    )
-                                })}
-                            </div>
-                        )
-                    } else {
-                        return (
-                            <div>
-                                <div className="parsons sortable-item" key={index}>
-                                    {element}
+        <div>
+            <Row>
+                <Col>
+                    <Button variant="primary" onClick={handleConfirmarNuevosVPDistractores}>
+                        Confirmar Nuevos VPDistractores
+                    </Button>
+                </Col>
+                <Col>
+                    <Button variant="primary" onClick={handleClickTerminarCrearVPDistractores}>
+                        Cancelar
+                    </Button>
+                </Col>
+            </Row>
+            <Row>
+                <div className="parsons sortable-column-left" id={"column0VPDistractores"}>
+                    {codeCopy.map((element, index) => {
+                        if(element.includes(props.vpddelimiterL)) {
+                            const re = new RegExp(`(?<=\\${props.vpddelimiterL})(.*?)(?=\\${props.vpddelimiterR})`, "gs");
+                            try {
+                                var sortableChoices = element.match(re)[0].split(props.vpddelimiterM);
+                            } catch (e) {
+                                sortableChoices = ["Either remove or correct", "your choices of visually paired", "delimiters"];
+                                console.log("Error", e.name);
+                                console.log("Error", e.message);
+                            }
+                            return (
+                                <div className="parsons sortable-choice-parent" key={index}>
+                                    {sortableChoices.map((sortableChoice, sortablechoiceIndex) => {
+                                        var auxClass = sortablechoiceIndex === 0 ? ("sortable-choice chosen-choice") : ("sortable-choice");
+                                        return (
+                                            <div className={auxClass} key={index + "_" + sortablechoiceIndex}>
+                                                {sortableChoice}
+                                            </div>
+                                        )
+                                    })}
                                 </div>
-                                <Button variant='success' key={"new" + index}
-                                    onClick={(e) => handleClickCrearVPDistractor(e, index)}
-                                >
-                                    +
-                                </Button>
-                            </div>
-                        )
-                    }
-                })}
-            </div>
-            <Button variant="primary" onClick={handleClickTerminarCrearVPDistractores}>
-                Cancelar
-            </Button>
-            <Button variant="primary" onClick={handleConfirmarNuevosVPDistractores}>
-                Confirmar Nuevos VPDistractores
-            </Button>
+                            )
+                        } else {
+                            return (
+                                <div>
+                                    <div className="parsons sortable-item" key={index}>
+                                        {element}
+                                    </div>
+                                    <Button variant='success' key={"new" + index}
+                                        onClick={(e) => handleClickCrearVPDistractor(e, index)}
+                                    >
+                                        +
+                                    </Button>
+                                </div>
+                            )
+                        }
+                    })}
+                </div>
+            </Row>
         </div>
     );
 }

@@ -2,9 +2,11 @@ import "./ParsonsProblem_style.css";
 import React, { useEffect, useRef, useState } from 'react';
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
 import UnirBloques from "./UnirBloques";
 import SingleLineForm from "./SingleLineForm";
 import CrearVPDistractores from "./CrearVPDistractores";
+import { Col } from "react-bootstrap";
 
 function ParsonsProblem(props) {
 
@@ -173,58 +175,67 @@ function ParsonsProblem(props) {
                 <>
                 </>
             ) : (
-                <div className="parsons sortable-container" id={props.id}>
-                    <div className="parsons sortable-column-left" id={"column0"}>
-                    {codeFragmentsArray.map((element, index) => {
-                        if (element.includes(props.vpddelimiterL)) { // If includes any part of vpd delimiter (except null)
-                            const re = new RegExp(`(?<=\\${props.vpddelimiterL})(.*?)(?=\\${props.vpddelimiterR})`, "gs");
-                            // Use regex and then split between middle character
-                            try {
-                                var sortableChoices = element.match(re)[0].split(props.vpddelimiterM);
-                            } catch (TypeError) {
-                                sortableChoices = ["Either remove or correct", "your choices of visually paired", "delimiters"];
+                <div>
+                    <Row>
+                        <Col>
+                            <Button variant="primary" onClick={handleClickUnirBloques}>
+                                Unir bloques
+                            </Button>
+                        </Col>
+                        <Col>
+                            <Button variant="secondary" onClick={handleClickCrearVPDistractores}>
+                                Crear VP Distractores
+                            </Button>
+                        </Col>
+                    </Row>
+
+                    <Row>
+                        <div className="parsons sortable-column-left" id={"column0"}>
+                        {codeFragmentsArray.map((element, index) => {
+                            if (element.includes(props.vpddelimiterL)) { // If includes any part of vpd delimiter (except null)
+                                const re = new RegExp(`(?<=\\${props.vpddelimiterL})(.*?)(?=\\${props.vpddelimiterR})`, "gs");
+                                // Use regex and then split between middle character
+                                try {
+                                    var sortableChoices = element.match(re)[0].split(props.vpddelimiterM);
+                                } catch (TypeError) {
+                                    sortableChoices = ["Either remove or correct", "your choices of visually paired", "delimiters"];
+                                }
+                                return (
+                                    <div className="parsons sortable-choice-parent" draggable
+                                        onDragStart={(e) => handleDragStart(e, index)}
+                                        onDragEnter={(e) => handleDragEnter(e, index)}
+                                        onDragEnd={handleDragEnd}
+                                        onDragOver={(e) => handleDragOver(e, index)}
+                                        key={index}
+                                    >
+                                        {sortableChoices.map((sortableChoice, sortablechoiceIndex) => {
+                                            var auxClass = sortablechoiceIndex === 0 ? ("sortable-choice chosen-choice") : ("sortable-choice");
+                                            return (
+                                                <div className={auxClass}
+                                                    key={index + "_" + sortablechoiceIndex}
+                                                >
+                                                    {sortableChoice}
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
+                                )
+                            } else {
+                                return (
+                                    <div className="parsons sortable-item" draggable
+                                        onDragStart={(e) => handleDragStart(e, index)}
+                                        onDragEnter={(e) => handleDragEnter(e, index)}
+                                        onDragEnd={handleDragEnd}
+                                        onDragOver={(e) => handleDragOver(e, index)}
+                                        key={index}
+                                    >
+                                        {element}
+                                    </div>
+                                )
                             }
-                            return (
-                                <div className="parsons sortable-choice-parent" draggable
-                                    onDragStart={(e) => handleDragStart(e, index)}
-                                    onDragEnter={(e) => handleDragEnter(e, index)}
-                                    onDragEnd={handleDragEnd}
-                                    onDragOver={(e) => handleDragOver(e, index)}
-                                    key={index}
-                                >
-                                    {sortableChoices.map((sortableChoice, sortablechoiceIndex) => {
-                                        var auxClass = sortablechoiceIndex === 0 ? ("sortable-choice chosen-choice") : ("sortable-choice");
-                                        return (
-                                            <div className={auxClass}
-                                                key={index + "_" + sortablechoiceIndex}
-                                            >
-                                                {sortableChoice}
-                                            </div>
-                                        )
-                                    })}
-                                </div>
-                            )
-                        } else {
-                            return (
-                                <div className="parsons sortable-item" draggable
-                                    onDragStart={(e) => handleDragStart(e, index)}
-                                    onDragEnter={(e) => handleDragEnter(e, index)}
-                                    onDragEnd={handleDragEnd}
-                                    onDragOver={(e) => handleDragOver(e, index)}
-                                    key={index}
-                                >
-                                    {element}
-                                </div>
-                            )
-                        }
-                    })}
-                </div>
-                    <Button variant="primary" onClick={handleClickUnirBloques}>
-                        Unir bloques
-                    </Button>{" "}
-                    <Button variant="secondary" onClick={handleClickCrearVPDistractores}>
-                        Crear VP Distractores
-                    </Button>
+                        })}
+                        </div>
+                    </Row>
                 </div>
             )}
 

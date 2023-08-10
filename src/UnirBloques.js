@@ -2,6 +2,7 @@ import Button from 'react-bootstrap/Button';
 import { useState, useRef } from 'react';
 import Modal from 'react-bootstrap/Modal'
 import SingleLineForm from './SingleLineForm';
+import { Col, Row } from 'react-bootstrap';
 
 function UnirBloques(props) {
 
@@ -81,64 +82,72 @@ function UnirBloques(props) {
     }
 
     return (
-        <div className="parsons sortable-container" id={props.id}>
-            <div className="parsons sortable-column-left" id={"column0"}>
-                {codeCopy.map((element, index) => {
-                    if (element.includes(props.vpddelimiterL)) { // If includes any part of vpd delimiter (except null)
-                        const re = new RegExp(`(?<=\\${props.vpddelimiterL})(.*?)(?=\\${props.vpddelimiterR})`, "gs");
-                        // Use regex and then split between middle character
-                        try {
-                            var sortableChoices = element.match(re)[0].split(props.vpddelimiterM);
-                        } catch (e) {
-                            sortableChoices = ["Either remove or correct", "your choices of visually paired", "delimiters"];
-                            console.log("Error", e.name);
-                            console.log("Error", e.message);
-                        }
-                        return (
-                            <div className="parsons sortable-choice-parent" key={index}>
-                                {sortableChoices.map((sortableChoice, sortablechoiceIndex) => {
-                                    var auxClass = sortablechoiceIndex === 0 ? ("sortable-choice chosen-choice") : ("sortable-choice");
-                                    return (
-                                        <>
-                                            <div className={auxClass} key={index + "_" + sortablechoiceIndex}>
-                                                {sortableChoice}
-                                            </div>
-                                            <Button variant='success' key={"new" + index + "_" + sortablechoiceIndex}
-                                                onClick={(e) => handleClickAddLineToVPD(e, index, sortablechoiceIndex)}>
-                                                Add New Line
-                                            </Button>
-                                        </>
-                                    )
-                                })}
-                            </div>
-                        )
-                    } else {
-                        return (
-                            <div>
-                                <div className="parsons sortable-item" key={index}>
-                                    {element}
-                                </div>
-                                {index !== codeCopy.length - 1 && !codeCopy[index + 1].startsWith(props.vpddelimiterL) ? (
-                                    <Button variant='success' key={"new" + index}
-                                        onClick={() => handleClickMergeCodeFragments(index)}
-                                    >
-                                        +
-                                    </Button>
-                                ) : (
-                                    <></>
-                                )}
-                            </div>
-                        )
-                    }
-                })}
-            </div>
-            <Button variant="primary" onClick={handleClickTerminarUnirBloques}>
-                Cancelar
-            </Button>
-            <Button variant="primary" onClick={handleUnirBloques}>
-                Confirmar Merge bloques
-            </Button>
+        <div>
+            <Row>
+                <Col>
+                    <Button variant="primary" onClick={handleUnirBloques}>
+                        Confirmar Merge bloques
+                    </Button>
 
+                </Col>
+                <Col>
+                    <Button variant="primary" onClick={handleClickTerminarUnirBloques}>
+                        Cancelar
+                    </Button>
+                </Col>
+            </Row>
+            <Row>
+                <div className="parsons sortable-column-left" id={"column0"}>
+                    {codeCopy.map((element, index) => {
+                        if (element.includes(props.vpddelimiterL)) { // If includes any part of vpd delimiter (except null)
+                            const re = new RegExp(`(?<=\\${props.vpddelimiterL})(.*?)(?=\\${props.vpddelimiterR})`, "gs");
+                            // Use regex and then split between middle character
+                            try {
+                                var sortableChoices = element.match(re)[0].split(props.vpddelimiterM);
+                            } catch (e) {
+                                sortableChoices = ["Either remove or correct", "your choices of visually paired", "delimiters"];
+                                console.log("Error", e.name);
+                                console.log("Error", e.message);
+                            }
+                            return (
+                                <div className="parsons sortable-choice-parent" key={index}>
+                                    {sortableChoices.map((sortableChoice, sortablechoiceIndex) => {
+                                        var auxClass = sortablechoiceIndex === 0 ? ("sortable-choice chosen-choice") : ("sortable-choice");
+                                        return (
+                                            <>
+                                                <div className={auxClass} key={index + "_" + sortablechoiceIndex}>
+                                                    {sortableChoice}
+                                                </div>
+                                                <Button variant='success' key={"new" + index + "_" + sortablechoiceIndex}
+                                                    onClick={(e) => handleClickAddLineToVPD(e, index, sortablechoiceIndex)}>
+                                                    Add New Line
+                                                </Button>
+                                            </>
+                                        )
+                                    })}
+                                </div>
+                            )
+                        } else {
+                            return (
+                                <div>
+                                    <div className="parsons sortable-item" key={index}>
+                                        {element}
+                                    </div>
+                                    {index !== codeCopy.length - 1 && !codeCopy[index + 1].startsWith(props.vpddelimiterL) ? (
+                                        <Button variant='success' key={"new" + index}
+                                            onClick={() => handleClickMergeCodeFragments(index)}
+                                        >
+                                            +
+                                        </Button>
+                                    ) : (
+                                        <></>
+                                    )}
+                                </div>
+                            )
+                        }
+                    })}
+                </div>
+            </Row>
             <Modal show={showAddLineToVPDModal} onHide={handleCloseAddLineToVPDModal}>
                 <Modal.Header closeButton>
                     <Modal.Title>Modal heading</Modal.Title>

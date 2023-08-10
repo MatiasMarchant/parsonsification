@@ -6,6 +6,7 @@ import MultipleLineForm from './MultipleLineForm';
 import ParsonsProblem from './ParsonsProblem';
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
+import { Card } from 'react-bootstrap';
 
 function LandingPage() {
 
@@ -22,30 +23,49 @@ function LandingPage() {
         <Container>
             <Form>
                 <fieldset disabled={disabledinput}>
-                    <SingleLineForm id="idtest" label="Codedelimiter" placeholder="test placeholder" text="test text" setValue={setCodedelimiter} defaultValue={"\n"} value={codedelimiter}/>
-                    <Row>
-                        <Col><SingleLineForm id="id_visuallypddl" label="VPD L" placeholder="vpdd delimiter L" text="vpdd text L" setValue={setVPDdelimiterL} defaultValue={null} value={vpddelimiterL}/></Col>
-                        <Col><SingleLineForm id="id_visuallypddm" label="VPD M" placeholder="vpdd delimiter M" text="vpdd text M" setValue={setVPDdelimiterM} defaultValue={null} value={vpddelimiterM}/></Col>
-                        <Col><SingleLineForm id="id_visuallypddr" label="VPD R" placeholder="vpdd delimiter R" text="vpdd text R" setValue={setVPDdelimiterR} defaultValue={null} value={vpddelimiterR}/></Col>
+                    <Row className="mt-3 mb-3">
+                        <Col xs={12} sm={12} md={12} lg={12} xl={12} xxl={12}>
+                            <Card>
+                                <Card.Body>
+                                    <MultipleLineForm id="id_code" label="Ingresa acá tu código" rows="6" placeholder="Código" text={null} setValue={setCode} value={code}/>
+                                </Card.Body>
+                            </Card>
+                        </Col>
                     </Row>
-                    <MultipleLineForm id="id_code" label="Code" rows="7" placeholder="code placeholder" text="code text" setValue={setCode} value={code}/>
+                    <Row className="mt-3 mb-3">
+                        <Col xs={12} sm={12} md={12} lg={12} xl={12} xxl={12}>
+                            <Card>
+                                <Card.Header className='text-center' as='h6'>Ingresa delimitadores</Card.Header>
+                                <Card.Body>
+                                    <Row>
+                                        <Col xs={3} sm={3} md={3} lg={3} xl={3} xxl={3}><SingleLineForm id="idtest" label="Codedelimiter" placeholder="Opcional" text="También puedes presionar 'Unir bloques'" setValue={setCodedelimiter} defaultValue={"\n"} value={codedelimiter}/></Col>
+                                        <Col xs={3} sm={3} md={3} lg={3} xl={3} xxl={3}><SingleLineForm id="id_visuallypddl" label="VPD Izquierda" placeholder="Opcional" text="También puedes presionar 'Crear VP Distractores'" setValue={setVPDdelimiterL} defaultValue={null} value={vpddelimiterL}/></Col>
+                                        <Col xs={3} sm={3} md={3} lg={3} xl={3} xxl={3}><SingleLineForm id="id_visuallypddm" label="VPD Medio" placeholder="Opcional" text={null} setValue={setVPDdelimiterM} defaultValue={null} value={vpddelimiterM}/></Col>
+                                        <Col xs={3} sm={3} md={3} lg={3} xl={3} xxl={3}><SingleLineForm id="id_visuallypddr" label="VPD Derecha" placeholder="Opcional" text={null} setValue={setVPDdelimiterR} defaultValue={null} value={vpddelimiterR}/></Col>
+                                    </Row>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
                 </fieldset>
 
             </Form>
-            <ParsonsProblem
-                id={ParsonsProblemId}
-                codedelimiter={codedelimiter}
-                setCodedelimiter={setCodedelimiter}
-                vpddelimiterL={vpddelimiterL}
-                vpddelimiterM={vpddelimiterM}
-                vpddelimiterR={vpddelimiterR}
-                setVPDdelimiterL={setVPDdelimiterL}
-                setVPDdelimiterM={setVPDdelimiterM}
-                setVPDdelimiterR={setVPDdelimiterR}
-                setCode={setCode}
-                code={code}
-                setDisabledinput={setDisabledinput}
-            />
+            <Row className="mt-2 mb-3">
+                <ParsonsProblem
+                    id={ParsonsProblemId}
+                    codedelimiter={codedelimiter}
+                    setCodedelimiter={setCodedelimiter}
+                    vpddelimiterL={vpddelimiterL}
+                    vpddelimiterM={vpddelimiterM}
+                    vpddelimiterR={vpddelimiterR}
+                    setVPDdelimiterL={setVPDdelimiterL}
+                    setVPDdelimiterM={setVPDdelimiterM}
+                    setVPDdelimiterR={setVPDdelimiterR}
+                    setCode={setCode}
+                    code={code}
+                    setDisabledinput={setDisabledinput}
+                />
+            </Row>
         </Container>
     );
 }

@@ -6,10 +6,12 @@
 .parsons.sortable-column-left {
     width: 100%;
     background-color: #dfdfdf;
-    margin-left: 0;
+    margin-left: 0px;
     border: 1px solid #efefff;
     padding: 5px;
     padding-bottom: 10px;
+    background-clip: content-box;
+    border-radius: 10px;
 }
 
 .parsons.sortable-column-feedback {
@@ -25,11 +27,14 @@
     background-color: #efefef;
     border: 1px solid #d3d3d3;
     margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
     padding: 10px;
     border-radius: 10px;
     cursor: move;
     font-family: monospace;
-    font-size: 120%;
+    font-size: 110%;
     white-space: break-spaces;
 }
 

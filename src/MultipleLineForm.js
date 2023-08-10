@@ -8,7 +8,7 @@ function MultipleLineForm(props) {
 
     return (
         <Form.Group controlId={props.id} className="mb-3">
-            <Form.Label>{props.label}</Form.Label>
+            <Form.Label as="h5">{props.label}</Form.Label>
             <Form.Control as="textarea" rows={props.rows} placeholder={props.placeholder} onChange={handleChange} value={props.value} />
             <Form.Text>
                 {props.text}
