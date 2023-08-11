@@ -33,15 +33,15 @@ function CrearVPDistractores(props) {
 
     return (
         <div>
-            <Row>
-                <Col>
-                    <Button variant="primary" onClick={handleConfirmarNuevosVPDistractores}>
-                        Confirmar Nuevos VPDistractores
+            <Row className="mb-1">
+                <Col className="d-grid">
+                    <Button variant="danger" onClick={handleClickTerminarCrearVPDistractores}>
+                            Cancelar
                     </Button>
                 </Col>
-                <Col>
-                    <Button variant="primary" onClick={handleClickTerminarCrearVPDistractores}>
-                        Cancelar
+                <Col className="d-grid">
+                    <Button variant="success" onClick={handleConfirmarNuevosVPDistractores}>
+                        Confirmar nuevos VPD
                     </Button>
                 </Col>
             </Row>
@@ -75,11 +75,13 @@ function CrearVPDistractores(props) {
                                     <div className="parsons sortable-item" key={index}>
                                         {props.removeLeftSpaces(element)}
                                     </div>
-                                    <Button variant='success' key={"new" + index}
-                                        onClick={(e) => handleClickCrearVPDistractor(e, index)}
-                                    >
-                                        +
-                                    </Button>
+                                    <div className="d-grid m-1">
+                                        <Button variant='primary' size="sm" key={"new" + index}
+                                            onClick={(e) => handleClickCrearVPDistractor(e, index)}
+                                        >
+                                            Crear VPD
+                                        </Button>
+                                    </div>
                                 </div>
                             )
                         }

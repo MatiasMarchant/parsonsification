@@ -196,15 +196,15 @@ function ParsonsProblem(props) {
                 </>
             ) : (
                 <div>
-                    <Row>
-                        <Col>
+                    <Row className="mb-1">
+                        <Col className="d-grid">
                             <Button variant="primary" onClick={handleClickUnirBloques}>
                                 Unir bloques
                             </Button>
                         </Col>
-                        <Col>
-                            <Button variant="secondary" onClick={handleClickCrearVPDistractores}>
-                                Crear VP Distractores
+                        <Col className="d-grid">
+                            <Button variant="primary" onClick={handleClickCrearVPDistractores}>
+                                Transformar bloque a VPD
                             </Button>
                         </Col>
                     </Row>

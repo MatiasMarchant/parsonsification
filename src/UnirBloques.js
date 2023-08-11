@@ -83,16 +83,15 @@ function UnirBloques(props) {
 
     return (
         <div>
-            <Row>
-                <Col>
-                    <Button variant="primary" onClick={handleUnirBloques}>
-                        Confirmar Merge bloques
-                    </Button>
-
-                </Col>
-                <Col>
-                    <Button variant="primary" onClick={handleClickTerminarUnirBloques}>
+            <Row className="mb-1">
+                <Col className="d-grid">
+                    <Button variant="danger" onClick={handleClickTerminarUnirBloques}>
                         Cancelar
+                    </Button>
+                </Col>
+                <Col className="d-grid">
+                    <Button variant="success" onClick={handleUnirBloques}>
+                        Confirmar unión
                     </Button>
                 </Col>
             </Row>
@@ -118,10 +117,13 @@ function UnirBloques(props) {
                                                 <div className={auxClass} key={index + "_" + sortablechoiceIndex}>
                                                     {props.removeLeftSpaces(sortableChoice)}
                                                 </div>
-                                                <Button variant='success' key={"new" + index + "_" + sortablechoiceIndex}
-                                                    onClick={(e) => handleClickAddLineToVPD(e, index, sortablechoiceIndex)}>
-                                                    Add New Line
-                                                </Button>
+                                                <div className="d-grid m-1">
+                                                    <Button variant='primary' size="sm" key={"new" + index + "_" + sortablechoiceIndex}
+                                                        onClick={(e) => handleClickAddLineToVPD(e, index, sortablechoiceIndex)}>
+                                                        Agregar línea de código
+                                                    </Button>
+                                                </div>
+
                                             </>
                                         )
                                     })}
@@ -134,11 +136,13 @@ function UnirBloques(props) {
                                         {props.removeLeftSpaces(element)}
                                     </div>
                                     {index !== codeCopy.length - 1 && !codeCopy[index + 1].startsWith(props.vpddelimiterL) ? (
-                                        <Button variant='success' key={"new" + index}
-                                            onClick={() => handleClickMergeCodeFragments(index)}
-                                        >
-                                            +
-                                        </Button>
+                                        <div className='d-grid m-1'>
+                                            <Button variant='primary' size="sm" key={"new" + index}
+                                                onClick={() => handleClickMergeCodeFragments(index)}
+                                            >
+                                                Unir
+                                            </Button>
+                                        </div>
                                     ) : (
                                         <></>
                                     )}
