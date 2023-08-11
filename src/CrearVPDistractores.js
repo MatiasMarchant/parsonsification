@@ -26,7 +26,7 @@ function CrearVPDistractores(props) {
     function handleClickCrearVPDistractor(e, index) {
         const copycodeCopy = [...codeCopy];
         let tobeModified = copycodeCopy[index];
-        tobeModified = props.vpddelimiterL + tobeModified + props.vpddelimiterM + "Modify here " + index + props.vpddelimiterR;
+        tobeModified = props.vpddelimiterL + tobeModified + props.vpddelimiterM + "Modifica acá " + index + props.vpddelimiterR;
         copycodeCopy.splice(index, 1, tobeModified);
         setCodeCopy(copycodeCopy);
     }

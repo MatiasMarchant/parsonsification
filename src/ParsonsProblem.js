@@ -261,29 +261,29 @@ function ParsonsProblem(props) {
 
             <Modal show={showCodeDelimiterModal} onHide={handleCloseCodeDelimiterModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
+                    <Modal.Title>Unir bloques</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <SingleLineForm id="idtest" label="Codedelimiter" placeholder="test placeholder" text="test text" setValue={setPreCodeDelimiter} value={preCodeDelimiter} defaultValue={props.codedelimiter} autoFocus={true} />
+                    <SingleLineForm id="idtest" label="Define tu Codedelimiter" placeholder="Recuerda usar caracteres que no se encuentren en tu código" text={null} setValue={setPreCodeDelimiter} value={preCodeDelimiter} defaultValue={props.codedelimiter} autoFocus={true} />
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseCodeDelimiterModal}>Close</Button>
-                    <Button variant="primary" onClick={handleSaveCodeDelimiterModal}>Save Changes</Button>
+                    <Button variant="secondary" onClick={handleCloseCodeDelimiterModal}>Cerrar</Button>
+                    <Button variant="primary" onClick={handleSaveCodeDelimiterModal}>Guardar</Button>
                 </Modal.Footer>
             </Modal>
 
             <Modal show={showVPDDelimiterModal} onHide={handleCloseVPDDelimiterModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
+                    <Modal.Title>Transformar bloque a VPD</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <SingleLineForm id="id_visuallypddl" label="VPD L" placeholder="vpdd delimiter L" text="vpdd text L" setValue={setPreVPDDelimiterL} value={preVPDDelimiterL} defaultValue={props.vpddelimiterL} autoFocus={true}/>
-                    <SingleLineForm id="id_visuallypddm" label="VPD M" placeholder="vpdd delimiter M" text="vpdd text M" setValue={setPreVPDDelimiterM} value={preVPDDelimiterM} defaultValue={props.vpddelimiterM}/>
-                    <SingleLineForm id="id_visuallypddr" label="VPD R" placeholder="vpdd delimiter R" text="vpdd text R" setValue={setPreVPDDelimiterR} value={preVPDDelimiterR} defaultValue={props.vpddelimiterR}/>
+                    <SingleLineForm id="id_visuallypddl" label="Define tu VPD Izquierda" placeholder="Recuerda usar caracteres que no se encuentren en tu código" text={null} setValue={setPreVPDDelimiterL} value={preVPDDelimiterL} defaultValue={props.vpddelimiterL} autoFocus={true}/>
+                    <SingleLineForm id="id_visuallypddm" label="Define tu VPD Medio" placeholder="Recuerda usar caracteres que no se encuentren en tu código" text={null} setValue={setPreVPDDelimiterM} value={preVPDDelimiterM} defaultValue={props.vpddelimiterM}/>
+                    <SingleLineForm id="id_visuallypddr" label="Define tu VPD Derecha" placeholder="Recuerda usar caracteres que no se encuentren en tu código" text={null} setValue={setPreVPDDelimiterR} value={preVPDDelimiterR} defaultValue={props.vpddelimiterR}/>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseVPDDelimiterModal}>Close</Button>
-                    <Button variant="primary" onClick={handleSaveVPDDelimiterModal}>Save Changes</Button>
+                    <Button variant="secondary" onClick={handleCloseVPDDelimiterModal}>Cerrar</Button>
+                    <Button variant="primary" onClick={handleSaveVPDDelimiterModal}>Guardar</Button>
                 </Modal.Footer>
             </Modal>
         </>
