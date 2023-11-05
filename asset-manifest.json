@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/parsonsification/static/css/main.361f61b8.css",
+    "main.js": "/parsonsification/static/js/main.0eb163df.js",
+    "static/js/787.218cc9f0.chunk.js": "/parsonsification/static/js/787.218cc9f0.chunk.js",
+    "index.html": "/parsonsification/index.html",
+    "main.361f61b8.css.map": "/parsonsification/static/css/main.361f61b8.css.map",
+    "main.0eb163df.js.map": "/parsonsification/static/js/main.0eb163df.js.map",
+    "787.218cc9f0.chunk.js.map": "/parsonsification/static/js/787.218cc9f0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.361f61b8.css",
+    "static/js/main.0eb163df.js"
+  ]
+}
